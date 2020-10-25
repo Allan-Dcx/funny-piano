@@ -2,7 +2,7 @@
     <div class="Piano">
         <img id="Emoticone" class="m-auto"  >
         <div class="Body_Piano m-auto flex flex-col ">
-            <div class="Grandes_Touches ">
+            <div class="Grandes_Touches lg:mt-3 ">
                 <button class="Grande_Touche noteC" @click.prevent="Sound('/assets/sounds/C.mp3')" @click="GifsAnime()"></button>
                 <button class="Grande_Touche noteD" @click.prevent="Sound('/assets/sounds/D.mp3')" @click="GifsAnime()"></button>
                 <button class="Grande_Touche noteE" @click.prevent="Sound('/assets/sounds/E.mp3')" @click="GifsAnime()"></button>
@@ -11,7 +11,7 @@
                 <button class="Grande_Touche noteA" @click.prevent="Sound('/assets/sounds/A.mp3')" @click="GifsAnime()"></button>
                 <button class="Grande_Touche noteB" @click.prevent="Sound('/assets/sounds/B.mp3')" @click="GifsAnime()"></button>
             </div>
-            <div class="Petites_Touches flex">
+            <div class="Petites_Touches ">
                 <button class="Petite_Touche noteC1" @click.prevent="Sound('/assets/sounds/C%23.mp3')" @click="GifsAnime()"  ></button>
                 <button class="Petite_Touche noteD2" @click.prevent="Sound('/assets/sounds/D%23.mp3')" @click="GifsAnime()"></button>
                 <button class="Petite_Touche noteF3" @click.prevent="Sound('/assets/sounds/F%23.mp3')" @click="GifsAnime()"  ></button>
@@ -62,7 +62,7 @@ export default {
             const urlRandom = gifs[nbRandom].images['fixed_width'].webp ;
             document.getElementById('Emoticone').src=urlRandom ;
         },
-
+            
     }
 
 }
@@ -104,6 +104,11 @@ img {
         margin-top: 100px ;
     }
 }
+
+.Piano {
+        padding-bottom: 35px;
+    }
+
 
 .Grande_Touche:nth-child(1) {
     height: 252px ;
