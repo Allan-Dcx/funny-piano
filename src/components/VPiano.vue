@@ -2,16 +2,16 @@
     <div class="Piano">
         <img id="Emoticone" class="m-auto"  >
         <div class="Body_Piano m-auto flex flex-col ">
-            <div class="Grandes_Touches lg:mt-3 ">
+            <div class="Grandes_Touches flex lg:mt-3 mt-2 ">
                 <button class="Grande_Touche noteC" @click.prevent="Sound('/assets/sounds/C.mp3')" @click="GifsAnime()"></button>
                 <button class="Grande_Touche noteD" @click.prevent="Sound('/assets/sounds/D.mp3')" @click="GifsAnime()"></button>
                 <button class="Grande_Touche noteE" @click.prevent="Sound('/assets/sounds/E.mp3')" @click="GifsAnime()"></button>
-                <button class="tGrande_Touche noteF" @click.prevent="Sound('/assets/sounds/F.mp3')" @click="GifsAnime()" ></button>
+                <button class="Grande_Touche noteF" @click.prevent="Sound('/assets/sounds/F.mp3')" @click="GifsAnime()" ></button>
                 <button class="Grande_Touche noteG" @click.prevent="Sound('/assets/sounds/G.mp3')" @click="GifsAnime()" ></button>
                 <button class="Grande_Touche noteA" @click.prevent="Sound('/assets/sounds/A.mp3')" @click="GifsAnime()"></button>
                 <button class="Grande_Touche noteB" @click.prevent="Sound('/assets/sounds/B.mp3')" @click="GifsAnime()"></button>
             </div>
-            <div class="Petites_Touches ">
+            <div class="Petites_Touches flex ">
                 <button class="Petite_Touche noteC1" @click.prevent="Sound('/assets/sounds/C%23.mp3')" @click="GifsAnime()"  ></button>
                 <button class="Petite_Touche noteD2" @click.prevent="Sound('/assets/sounds/D%23.mp3')" @click="GifsAnime()"></button>
                 <button class="Petite_Touche noteF3" @click.prevent="Sound('/assets/sounds/F%23.mp3')" @click="GifsAnime()"  ></button>
@@ -62,7 +62,6 @@ export default {
             const urlRandom = gifs[nbRandom].images['fixed_width'].webp ;
             document.getElementById('Emoticone').src=urlRandom ;
         },
-            
     }
 
 }
@@ -75,7 +74,7 @@ img {
     width: auto ;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 676px) {
     .Piano {
         padding-bottom: 35px;
     }
@@ -91,7 +90,7 @@ img {
     box-shadow: 1px 1px 30px rgb(97, 47, 47) ;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 676px) {
     .Body_Piano {
         max-height: 190px ;
         max-width: 368px ;
@@ -99,7 +98,7 @@ img {
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 676px) {
     #Emoticone {
         margin-top: 100px ;
     }
@@ -117,7 +116,7 @@ img {
     border-radius: 5px 0px 0px 5px ;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 676px) {
     .Grande_Touche:nth-child(1) {
         height: 173px ;
         width: 47px ;
@@ -131,7 +130,7 @@ img {
     border-radius: 0px 5px 5px 0px ;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 676px) {
     .Grande_Touche:nth-child(7) {
         height: 173px ;
         width: 47px ;  
@@ -143,9 +142,10 @@ img {
     width: 69px ;
     background: #FFFFFF ;
     margin: 0px 2px ;
+
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 676px) {
     .Grande_Touche {
         height: 173px ;
         width: 47px ;
@@ -158,10 +158,10 @@ img {
     align-items: flex-start ;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 676px) {
     .Petites_Touches {
         width: 368px ;
-        margin-top: -175px ;
+        margin-top: -97px ;
     }
 }
 
@@ -171,9 +171,11 @@ img {
     background: #000000 ;
     border-radius: 0px 0px 5px 5px ;
     margin-left: 43px ;
-}
 
-@media only screen and (max-width: 767px) {
+}
+   
+
+@media only screen and (max-width: 676px) {
     .Petite_Touche {
         height: 126px ;
         width: 21px ;
@@ -185,7 +187,7 @@ img {
     margin-left: 56px ;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 676px) {
     .Petite_Touche:nth-child(1) {
         margin-left: 46px ;
     }
@@ -195,14 +197,14 @@ img {
     margin-right: 73px ;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 676px) {
     .Petite_Touche:nth-child(2) {
         margin-right: 50px ;
     }
 }
 
 .Nom_Note {
-    width: 422px ;
+    width: 462px ;
     justify-content: center ;
     padding-bottom: 34px;
 }
@@ -213,8 +215,11 @@ img {
 }
 
 img {
-    height: 280px ;
+    height: 270px ;
     width: auto ;
 }
 
 </style>
+
+document.getElementByClassName("changeRed").onclick = function(){
+	document.getElementByClassName("output").style.color = '#FFD12D';
