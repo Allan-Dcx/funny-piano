@@ -1,33 +1,34 @@
 <template>
     <div class="Piano">
-        <img id="Emoji" class="m-auto"  >
-        <div class="Piano__container m-auto flex flex-col">
-            <div class="touches-blanches flex lg:mt-3 mt-2 ;">
-                <button class="touche-blanche noteC" @click.prevent="playAudio('/assets/sounds/C.mp3')" @click="getGifs()" @click.exact="colorKey('noteC', 'blanc')" @mouseout="colorBackKey('noteC', 'blanc')"></button>
-                <button class="touche-blanche noteD" @click.prevent="playAudio('/assets/sounds/D.mp3')" @click="getGifs()" @click.exact="colorKey('noteD', 'blanc')" @mouseout="colorBackKey('noteD', 'blanc')"></button>
-                <button class="touche-blanche noteE" @click.prevent="playAudio('/assets/sounds/E.mp3')" @click="getGifs()" @click.exact="colorKey('noteE', 'blanc')" @mouseout="colorBackKey('noteE', 'blanc')"></button>
-                <button class="touche-blanche noteF" @click.prevent="playAudio('/assets/sounds/F.mp3')" @click="getGifs()" @click.exact="colorKey('noteF', 'blanc')" @mouseout="colorBackKey('noteF', 'blanc')"></button>
-                <button class="touche-blanche noteG" @click.prevent="playAudio('/assets/sounds/G.mp3')" @click="getGifs()" @click.exact="colorKey('noteG', 'blanc')" @mouseout="colorBackKey('noteG', 'blanc')"></button>
-                <button class="touche-blanche noteA" @click.prevent="playAudio('/assets/sounds/A.mp3')" @click="getGifs()" @click.exact="colorKey('noteA', 'blanc')" @mouseout="colorBackKey('noteA', 'blanc')"></button>
-                <button class="touche-blanche noteB" @click.prevent="playAudio('/assets/sounds/B.mp3')" @click="getGifs()" @click.exact="colorKey('noteB', 'blanc')" @mouseout="colorBackKey('noteB', 'blanc')"></button>
+        <img id="Emoticone" class="m-auto"  >
+        <div class="Body_Piano m-auto flex flex-col ">
+            <div class="Grandes_Touches ">
+                <button class="Grande_Touche noteC" @click.prevent="Sound('/assets/sounds/C.mp3')" @click="GifsAnime()"></button>
+                <button class="Grande_Touche noteD" @click.prevent="Sound('/assets/sounds/D.mp3')" @click="GifsAnime()"></button>
+                <button class="Grande_Touche noteE" @click.prevent="Sound('/assets/sounds/E.mp3')" @click="GifsAnime()"></button>
+                <button class="tGrande_Touche noteF" @click.prevent="Sound('/assets/sounds/F.mp3')" @click="GifsAnime()" ></button>
+                <button class="Grande_Touche noteG" @click.prevent="Sound('/assets/sounds/G.mp3')" @click="GifsAnime()" ></button>
+                <button class="Grande_Touche noteA" @click.prevent="Sound('/assets/sounds/A.mp3')" @click="GifsAnime()"></button>
+                <button class="Grande_Touche noteB" @click.prevent="Sound('/assets/sounds/B.mp3')" @click="GifsAnime()"></button>
             </div>
-            <div class="touches-noires flex">
-                <button class="touche-noire noteC1" @click.prevent="playAudio('/assets/sounds/C%23.mp3')" @click="getGifs()" @click.exact="colorKey('noteCc', 'noir')" @mouseout="colorBackKey('noteCc', 'noir')"></button>
-                <button class="touche-noire noteD2" @click.prevent="playAudio('/assets/sounds/D%23.mp3')" @click="getGifs()" @click.exact="colorKey('noteDd', 'noir')" @mouseout="colorBackKey('noteDd', 'noir')"></button>
-                <button class="touche-noire noteF3" @click.prevent="playAudio('/assets/sounds/F%23.mp3')" @click="getGifs()" @click.exact="colorKey('noteFf', 'noir')" @mouseout="colorBackKey('noteFf', 'noir')"></button>
-                <button class="touche-noire noteG4" @click.prevent="playAudio('/assets/sounds/G%23.mp3')" @click="getGifs()" @click.exact="colorKey('noteGg', 'noir')" @mouseout="colorBackKey('noteGg', 'noir')"></button>
-                <button class="touche-noire noteA5" @click.prevent="playAudio('/assets/sounds/A%23.mp3')" @click="getGifs()" @click.exact="colorKey('noteAa', 'noir')" @mouseout="colorBackKey('noteAa', 'noir')"></button>
+            <div class="Petites_Touches flex">
+                <button class="Petite_Touche noteC1" @click.prevent="Sound('/assets/sounds/C%23.mp3')" @click="GifsAnime()"  ></button>
+                <button class="Petite_Touche noteD2" @click.prevent="Sound('/assets/sounds/D%23.mp3')" @click="GifsAnime()"></button>
+                <button class="Petite_Touche noteF3" @click.prevent="Sound('/assets/sounds/F%23.mp3')" @click="GifsAnime()"  ></button>
+                <button class="Petite_Touche noteG4" @click.prevent="Sound('/assets/sounds/G%23.mp3')" @click="GifsAnime()" ></button>
+                <button class="Petite_Touche noteA5" @click.prevent="Sound('/assets/sounds/A%23.mp3')" @click="GifsAnime()" ></button>
             </div>
             
         </div>
-        <div class="Notes_piano m-auto hidden md:flex">
-            <a class="note">Do</a>
-            <a class="note">Ré</a>
-            <a class="note">Mi</a>
-            <a class="note">Fa</a>
-            <a class="note">Sol</a>
-            <a class="note">La</a>
-            <a class="note">Si</a>
+        <div class="Nom_Note flex m-auto ">
+            <a class="Note">Do</a>
+            <a class="Note">Ré</a>
+            <a class="Note">Mi</a>
+            <a class="Note">Fa</a>
+           <a class="Note">Sol</a>
+            <a class="Note">La</a>
+            <a class="Note">Si</a>
+
         </div>
     </div>
 </template>
@@ -46,121 +47,11 @@ export default {
         this.addListeners()
     },
     methods: {
-        addListeners() {
-            document.addEventListener('keydown', this.onKeyDown)
-            document.addEventListener('keyup', this.onKeyUp)
-        },
-        onKeyDown(e) {
-            console.log(e)
-            if (this.isPress) return
-
-            switch (e.keyCode) {
-            case 81:
-                // touche blanche do
-                this.playAudio('/assets/sounds/C.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteC')[0].style.backgroundColor = "#FFD12D" ;
-                document.getElementsByClassName('note')[0].style.color = "#FFFFFF" ;
-                break ;
-            case 83:
-                // touche blanche ré
-                this.playAudio('/assets/sounds/D.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteD')[0].style.backgroundColor = "#FFD12D" ;
-                document.getElementsByClassName('note')[1].style.color = "#FFFFFF" ;
-                break ;
-            case 68:
-                // touche blanche mi
-                this.playAudio('/assets/sounds/E.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteE')[0].style.backgroundColor = "#FFD12D" ;
-                document.getElementsByClassName('note')[2].style.color = "#FFFFFF" ;
-                break ;
-            case 70:
-                // touche blanche fa
-                this.playAudio('/assets/sounds/F.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteF')[0].style.backgroundColor = "#FFD12D" ;
-                document.getElementsByClassName('note')[3].style.color = "#FFFFFF" ;
-                break ;
-            case 71:
-                // touche blanche sol
-                this.playAudio('/assets/sounds/G.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteG')[0].style.backgroundColor = "#FFD12D" ;
-                document.getElementsByClassName('note')[4].style.color = "#FFFFFF" ;
-                break ;
-            case 72:
-                // touche blanche la
-                this.playAudio('/assets/sounds/A.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteA')[0].style.backgroundColor = "#FFD12D" ;
-                document.getElementsByClassName('note')[5].style.color = "#FFFFFF" ;
-                break ;
-            case 74:
-                // touche blanche si
-                this.playAudio('/assets/sounds/B.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteB')[0].style.backgroundColor = "#FFD12D" ;
-                document.getElementsByClassName('note')[6].style.color = "#FFFFFF" ;
-                break ;
-            case 90:
-                // touche noire do#
-                this.playAudio('/assets/sounds/C1.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteC1')[0].style.backgroundColor = "#E6016F" ;
-                document.getElementsByClassName('note')[0].style.color = "#FFFFFF" ;
-                break ;
-            case 69:
-                // touche noire ré#
-                this.playAudio('/assets/sounds/D2.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteD2')[0].style.backgroundColor = "#E6016F" ;
-                document.getElementsByClassName('note')[1].style.color = "#FFFFFF" ;
-                break ;
-            case 84:
-                // touche noire fa#
-                this.playAudio('/assets/sounds/F3.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteF3')[0].style.backgroundColor = "#E6016F" ;
-                document.getElementsByClassName('note')[3].style.color = "#FFFFFF" ;
-                break ;
-            case 89:
-                // touche noire sol#
-                this.playAudio('/assets/sounds/G4.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteG4')[0].style.backgroundColor = "#E6016F" ;
-                document.getElementsByClassName('note')[4].style.color = "#FFFFFF" ;
-                break ;
-            case 85:
-                // touche noire la#
-                this.playAudio('/assets/sounds/A5.mp3') ;
-                this.getGifs() ;
-                document.getElementsByClassName('noteA5')[0].style.backgroundColor = "#E6016F" ;
-                document.getElementsByClassName('note')[5].style.color = "#FFFFFF" ;
-                break ;
-            }
-
-            this.isPress = true
-        },
-        onKeyUp(e) {
-            console.log(e)
-            this.isPress = false
-            for (let i = 0 ; i < 7 ; i++) {
-                document.getElementsByClassName('touche-blanche')[i].style.backgroundColor = "#FFFFFF" ;
-            }
-            for (let j = 0 ; j < 5 ; j++) {
-                document.getElementsByClassName('touche-noire')[j].style.backgroundColor = "#000000" ;
-            }
-            for (let k = 0 ; k < 7 ; k++) {
-                document.getElementsByClassName('note')[k].style.color = "rgba(255, 255, 255, 0.4)" ;
-            }
-            
-        },
-        playAudio : function (url) {
+        
+        Sound : function (url) {
             new Audio(url).play() ;
         },
-        async getGifs() {      
+        async GifsAnime() {      
             const gf = new GiphyFetch('hoc7Xw81iwUP2iewXhekupQznVmYDlHK')
 
             const { data: gifs } =  await gf.emoji()
@@ -169,117 +60,28 @@ export default {
             const nbRandom = Math.floor(Math.random() * Math.floor(25)) ;
             console.log(gifs[nbRandom].images['fixed_width'].webp) ;
             const urlRandom = gifs[nbRandom].images['fixed_width'].webp ;
-            document.getElementById('Emoji').src=urlRandom ;
+            document.getElementById('Emoticone').src=urlRandom ;
         },
-        colorKey (note, touche) {
-            if (touche == 'blanc') {
-                document.getElementsByClassName(note)[0].style.backgroundColor = "#FFD12D" ;
-            } else if (touche == 'noir') {
-                document.getElementsByClassName(note)[0].style.backgroundColor = "#E6016F" ;
-            }
-            switch (note) {
-                case 'noteC':
-                    document.getElementsByClassName('note')[0].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteD':
-                    document.getElementsByClassName('note')[1].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteE':
-                    document.getElementsByClassName('note')[2].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteF':
-                    document.getElementsByClassName('note')[3].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteG':
-                    document.getElementsByClassName('note')[4].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteA':
-                    document.getElementsByClassName('note')[5].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteB':
-                    document.getElementsByClassName('note')[6].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteCc':
-                    document.getElementsByClassName('note')[0].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteDd':
-                    document.getElementsByClassName('note')[1].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteFf':
-                    document.getElementsByClassName('note')[3].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteGg':
-                    document.getElementsByClassName('note')[4].style.color = "#FFFFFF" ;
-                    break ;
-                case 'noteAa':
-                    document.getElementsByClassName('note')[5].style.color = "#FFFFFF" ;
-                    break ;
-            }
-            
-        },
-        colorBackKey(note, touche) {
-            if (touche == 'blanc') {
-                document.getElementsByClassName(note)[0].style.backgroundColor = "#FFFFFF" ;
-            } else if (touche == 'noir') {
-                document.getElementsByClassName(note)[0].style.backgroundColor = "#000000" ;
-            }
-            for (let k = 0 ; k < 7 ; k++) {
-                document.getElementsByClassName('note')[k].style.color = "rgba(255, 255, 255, 0.4)" ;
-            }
-        }
+
     }
+
 }
 </script>
+
 
 <style lang="postcss" scoped>
 img {
     height: 280px ;
     width: auto ;
 }
-.note {
-    text-transform: uppercase ;
-    width: 73px ;
-    color: rgba(255, 255, 255, 0.4) ;
-}
-
-.Notes_piano {
-    width: 531px ;
-    justify-content: center ;
-    padding-bottom: 34px;
-}
-
-
-
 
 @media only screen and (max-width: 767px) {
-    .Piano__container {
-        max-height: 190px ;
-        max-width: 368px ;
-        margin-top: 70px ;
+    .Piano {
+        padding-bottom: 35px;
     }
 }
 
-@media only screen and (max-width: 767px) {
-    #Emoji {
-        margin-top: 100px ;
-    }
-}
-
-.touche-blanche:nth-child(1) {
-    height: 252px ;
-    width: 69px ;
-    background: #FFFFFF ;
-    border-radius: 5px 0px 0px 5px ;
-}
-
-@media only screen and (max-width: 767px) {
-    .touche-blanche:nth-child(1) {
-        height: 173px ;
-        width: 47px ;
-    }
-}
-
-.Piano__container {
+.Body_Piano {
     height: 276px ;
     width: 531px ;
     border-radius: 10px ;
@@ -289,8 +91,35 @@ img {
     box-shadow: 1px 1px 30px rgb(97, 47, 47) ;
 }
 
+@media only screen and (max-width: 767px) {
+    .Body_Piano {
+        max-height: 190px ;
+        max-width: 368px ;
+        margin-top: 70px ;
+    }
+}
 
-.touche-blanche:nth-child(7) {
+@media only screen and (max-width: 767px) {
+    #Emoticone {
+        margin-top: 100px ;
+    }
+}
+
+.Grande_Touche:nth-child(1) {
+    height: 252px ;
+    width: 69px ;
+    background: #FFFFFF ;
+    border-radius: 5px 0px 0px 5px ;
+}
+
+@media only screen and (max-width: 767px) {
+    .Grande_Touche:nth-child(1) {
+        height: 173px ;
+        width: 47px ;
+    }
+}
+
+.Grande_Touche:nth-child(7) {
     height: 252px ;
     width: 69px ; 
     background: #FFFFFF ; 
@@ -298,13 +127,13 @@ img {
 }
 
 @media only screen and (max-width: 767px) {
-    .touche-blanche:nth-child(7) {
+    .Grande_Touche:nth-child(7) {
         height: 173px ;
         width: 47px ;  
     }
 }
 
-.touche-blanche {
+.Grande_Touche {
     height: 252px ;
     width: 69px ;
     background: #FFFFFF ;
@@ -312,26 +141,26 @@ img {
 }
 
 @media only screen and (max-width: 767px) {
-    .touche-blanche {
+    .Grande_Touche {
         height: 173px ;
         width: 47px ;
     }
 }
 
-.touches-noires {
+.Petites_Touches {
     width: 507px ;
     margin-top: -252px ;
     align-items: flex-start ;
 }
 
 @media only screen and (max-width: 767px) {
-    .touches-noires {
+    .Petites_Touches {
         width: 368px ;
         margin-top: -175px ;
     }
 }
 
-.touche-noire {
+.Petite_Touche {
     height: 184px ;
     width: 30px ;
     background: #000000 ;
@@ -340,39 +169,47 @@ img {
 }
 
 @media only screen and (max-width: 767px) {
-    .touche-noire {
+    .Petite_Touche {
         height: 126px ;
         width: 21px ;
         margin-left: 30px ;
     }
 }
 
-.touche-noire:nth-child(1) {
+.Petite_Touche:nth-child(1) {
     margin-left: 56px ;
 }
 
 @media only screen and (max-width: 767px) {
-    .touche-noire:nth-child(1) {
+    .Petite_Touche:nth-child(1) {
         margin-left: 46px ;
     }
 }
 
-@media only screen and (max-width: 767px) {
-    .Piano {
-        padding-bottom: 35px;
-    }
-}
-
-.touche-noire:nth-child(2) {
+.Petite_Touche:nth-child(2) {
     margin-right: 73px ;
 }
 
 @media only screen and (max-width: 767px) {
-    .touche-noire:nth-child(2) {
+    .Petite_Touche:nth-child(2) {
         margin-right: 50px ;
     }
 }
 
+.Nom_Note {
+    width: 422px ;
+    justify-content: center ;
+    padding-bottom: 34px;
+}
+.Note {
+    text-transform: uppercase ;
+    width: 73px ;
+    color: rgba(255, 255, 255, 0.4) ;
+}
 
+img {
+    height: 280px ;
+    width: auto ;
+}
 
 </style>
