@@ -221,5 +221,3 @@ img {
 
 </style>
 
-document.getElementByClassName("changeRed").onclick = function(){
-	document.getElementByClassName("output").style.color = '#FFD12D';
